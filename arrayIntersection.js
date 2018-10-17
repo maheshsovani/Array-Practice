@@ -8,8 +8,9 @@ const createIntersectedArray=function(array1,array2){
   return intersectedArray;
 }
 const main=function(){
-  array1=[1,2,3,4,5,6,7]
+  array1=[1,2,3,4,5,6,97,7]
   array2=[3,1,2,1,97,3]
   console.log(createIntersectedArray(array1,array2))
 }
-main();
+//main();
+exports.createIntersectedArray=createIntersectedArray;
