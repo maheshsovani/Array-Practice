@@ -11,5 +11,5 @@ const main=function(){
   array=[1,2,3,4,5,6,4,3,5,2];
   console.log(filterUniqueElements(array))
 }
-main();
+//main();
 exports.filterUniqueElements=filterUniqueElements;
