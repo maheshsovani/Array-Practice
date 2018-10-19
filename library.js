@@ -1,13 +1,13 @@
-const createIntersectedArray=function(array1,array2){
+const intersectSets=function(array1,array2){
   let intersectedArray=[];
   for (element1 of array1)
-  for (element2 of array2)
-  if(element1==element2 && !intersectedArray.includes(element1)){
-    intersectedArray.push(element1);
-  }
+    for (element2 of array2)
+      if(element1==element2 && !intersectedArray.includes(element1)){
+        intersectedArray.push(element1);
+      }
   return intersectedArray;
 }
-exports.createIntersectedArray=createIntersectedArray;
+exports.intersectSets=intersectSets;
 
 const doPartition=function(array,number){
   let partitionedArray=[[],[]];
@@ -61,7 +61,7 @@ exports.zippedArray=zippedArray;
 const sumOfArrayNumbers = function(array){
   let sum=0;
   for (let index=0;index<array.length;index++){
-    sum+=array[index];
+    sum = sum + +array[index];
   }
   return sum;
 }
