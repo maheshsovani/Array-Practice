@@ -189,15 +189,16 @@ const reverseSeries = function(array){
   return array.reverse();
 }
 exports.reverseSeries=reverseSeries;
-
-const alternateElement=function(array){
-  let alternateElementArray = [];
-  let number = 0;
-  for (let index=0 ; index<array.length ; index+=2 ){
-    alternateElementArray[number] = array[index];
-    number++;
+ 
+const chooseAlternate=function(state,element){
+  let {index,elements} = state;
+  if( index%2 == 0 ){
+    elements.push(element)
   }
-  return alternateElementArray;
+  return {index:index+1,elements:elements}
+}
+const alternateElement=function(array){
+  return array.reduce(chooseAlternate,{index:0,elements:[]}).elements;
 }
 exports.alternateElement=alternateElement;
 
