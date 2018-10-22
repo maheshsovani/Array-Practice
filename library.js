@@ -81,16 +81,8 @@ const differentiateArrays = function(array1,array2){
 exports.differentiateArrays = differentiateArrays;
 
 const extractDigits=function(number){
-  let numberString=''+number;
-  let index=0;
-  array=numberString.split("");
-  while(index<array.length){
-    for (number of array){
-      array[index]=parseInt(number);
-      index++;
-    }
-  }
-  return array;
+  let outputArray = number.toString().split("");
+  return outputArray.map(x=>+x);
 }
 exports.extractDigits=extractDigits;
 
@@ -119,7 +111,7 @@ const countAboveThreshHold=function(array,threshHold){
 }
 exports.countAboveThreshHold=countAboveThreshHold;
 
-const greater=function(a,b){return (Math.max(a,b))}
+const greater=function(number1,number2){return (Math.max(number1,number2))}
 const findGreatestNumber=function(array){
   greatestNumber=array.reduce(greater)
   return greatestNumber;
@@ -148,10 +140,8 @@ const checkDecending=function(array){
 }
 exports.checkDecending=checkDecending;
 
-const mapLength=function(element){return element.length}
-
 const countElementLength=function(array){
-  return array.map(mapLength);
+  return array.map(element=>element.length);
 }
 exports.countElementLength=countElementLength;
 
@@ -167,7 +157,8 @@ const findLowestNumber=function(array){
 }
 exports.findLowestNumber=findLowestNumber;
 
-const isOdd=function(array){return array.filter(number=>number%2 !=0 )}
+const isOdd=function(array){
+  return array.filter(number=>number%2 !=0 )}
 
 const countOddNumbers=function(array){
   return isOdd(array).length;
@@ -175,13 +166,7 @@ const countOddNumbers=function(array){
 exports.countOddNumbers=countOddNumbers;
 
 const reverseArray = function(array){
-  let reversedArray = [];
-  let number = 0;
-  for (let index=array.length-1 ; index>=0 ; index--){
-    reversedArray[number] = array[index];
-    number++;
-  }
-  return reversedArray;
+  return array.reverse();
 }
 exports.reverseArray=reverseArray;
 
@@ -194,20 +179,14 @@ const reverseFibonacciSeries=function(limit){
     currentTerm=previousTerm+lastSecondTerm;
     lastSecondTerm=previousTerm;
     previousTerm=currentTerm;
-    fibonacciSeries.push(currentTerm);
+    fibonacciSeries.unshift(currentTerm);
   }
-  return(fibonacciSeries.reverse());
+  return(fibonacciSeries);
 }
 exports.reverseFibonacciSeries=reverseFibonacciSeries;
 
 const reverseSeries = function(array){
-  let reversedArray = [];
-  let number = 0;
-  for (let index=array.length-1 ; index>=0 ; index--){
-    reversedArray[number] = array[index];
-    number++;
-  }
-  return reversedArray;
+  return array.reverse();
 }
 exports.reverseSeries=reverseSeries;
 

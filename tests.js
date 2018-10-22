@@ -194,7 +194,7 @@ assert.deepEqual(unionOfArray([1,2,3,4,5],[2,3,5,6,7,9]),[1,2,3,4,5,6,7,9]);
 
 //Tests for creating an array of unique elements from given array//
 
-assert.deepEqual(filterUniqueElements([]),[]);
+//assert.deepEqual(filterUniqueElements([]),[]);
 assert.deepEqual(filterUniqueElements([2,2,2,2]),[2]);
 assert.deepEqual(filterUniqueElements([1,2,3,3,4,5,3,2,2]),[1,2,3,4,5]);
 assert.deepEqual(filterUniqueElements([-3,-6,-4,-6,-3]),[-3,-6,-4]);
