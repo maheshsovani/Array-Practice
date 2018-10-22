@@ -1,16 +1,28 @@
+const isIncludes=function(array){
+  return function(element){
+    let newArray = [];
+    if(array.includes(element)){
+      newArray.push(element);
+    }
+    return newArray;
+  }
+}
 const intersectSets=function(array1,array2){
-  let intersectedArray=[];
-  for (element1 of array1)
-    for (element2 of array2)
-      if(element1==element2 && !intersectedArray.includes(element1)){
-        intersectedArray.push(element1);
-      }
-  return intersectedArray;
+  let checkIntersection = isIncludes(array1);
+  return array2.filter(checkIntersection);
 }
 exports.intersectSets=intersectSets;
 
-const above=function(limit){return function(element){return element>limit}}
-const below=function(limit){return function(element){return element<limit}}
+const aboveLimit = function(limit){
+  return function(element){
+    return element>limit;
+  }
+}
+const belowLimit = function(limit){
+  return function(element){
+    return element<limit;
+  }
+}
 
 const doPartition=function(array,limit){
   let outputArray=[];
@@ -189,7 +201,7 @@ const reverseSeries = function(array){
   return array.reverse();
 }
 exports.reverseSeries=reverseSeries;
- 
+
 const chooseAlternate=function(state,element){
   let {index,elements} = state;
   if( index%2 == 0 ){

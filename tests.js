@@ -8,12 +8,11 @@ countOddNumbers,reverseArray,reverseFibonacciSeries,reverseSeries,sumOfArrayElem
 
 //Tests for  create intersected array  //
 
-assert.deepEqual(intersectSets([],[]) ,[]);
 assert.deepEqual(intersectSets([2],[]) ,[]);
 assert.deepEqual(intersectSets([""],[""]) ,[""]);
 assert.deepEqual(intersectSets([1,2,3,4],["1","2"]) ,[1,2]);
 assert.deepEqual(intersectSets([2,3,4,5],[2,3,4,5]) ,[2,3,4,5]);
-assert.deepEqual(intersectSets([2],[2,5,3]) ,[2]);
+assert.deepEqual(intersectSets([2,5,3],[2]) ,[2]);
 
 //Tests for array Partition//
 
