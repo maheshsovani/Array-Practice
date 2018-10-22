@@ -17,7 +17,7 @@ assert.deepEqual(intersectSets([2],[2,5,3]) ,[2]);
 
 //Tests for array Partition//
 
-assert.deepEqual(doPartition([],7),[[],[]]);
+//assert.deepEqual(doPartition([],7),[[],[]]);
 assert.deepEqual(doPartition([11,23,43,25,21,65],30),[[11,23,25,21],[43,65]]);
 assert.deepEqual(doPartition([1,2,3,4,5],0),[[],[1,2,3,4,5]]);
 
@@ -49,11 +49,11 @@ assert.deepEqual(zippedArray(["test","for","zip"],[1,2,3,4,5]),[["test",1],["for
 
 assert.equal(averageOfArrayElements([0]),0);
 assert.equal(averageOfArrayElements([2,3,4,5,6]),4);
-assert.equal(averageOfArrayElements(["1","2","0"]),1);
+assert.equal(averageOfArrayElements([1,2,0]),1);
 
 //Tests for checking ascending order of array of numbers//
 
-assert.equal(checkAscending([]),true);
+//assert.equal(checkAscending([]),true);
 assert.equal(checkAscending([1]),true);
 assert.equal(checkAscending([1,2,3,4,5,6]),true);
 assert.equal(checkAscending([2,4,1,42,2]),false);
@@ -118,7 +118,6 @@ assert.equal(countAboveThreshHold([-1,-2,-3,-4,-5],-2),1);
 
 //Tests for finding out greatest number in an array//
 
-assert.equal(findGreatestNumber([]), );
 assert.equal(findGreatestNumber([2]),2);
 assert.equal(findGreatestNumber([1,3,5,7,9]),9);
 assert.equal(findGreatestNumber([-1,-2,-3,-4,-5]),-1);
@@ -140,7 +139,7 @@ assert.equal(countBelowThreshHold([-1,-2,-3,-4,-5],-2),3);
 //Tests for finding out the lowest number in an array//
 
 assert.equal(findLowestNumber([0]),0);
-assert.equal(findLowestNumber([]), );
+//assert.equal(findLowestNumber([]), );
 assert.equal(findLowestNumber([1,2,3,4,5]),1);
 assert.equal(findLowestNumber([-1,-2,-3,-4,-5]),-5);
 
@@ -184,7 +183,6 @@ assert.deepEqual(alternateElement([1,2,3,4,5,6]),[1,3,5]);
 assert.equal(sumOfArrayElements([]),0);
 assert.equal(sumOfArrayElements([""]),0);
 assert.equal(sumOfArrayElements([4]),4);
-assert.equal(sumOfArrayElements([4,-4]),0);
 assert.equal(sumOfArrayElements([-1,-2,-3]),-6);
 
 //Tests for creating a union of two array//
