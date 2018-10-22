@@ -35,7 +35,7 @@ assert.equal(isSubsetOf([1,2],[]),false);
 assert.equal(isSubsetOf([""],[""]),true);
 assert.equal(isSubsetOf([1,2,3,4,5,6],[1,2,3]),true);
 assert.equal(isSubsetOf([1,2,3,"mahesh","some"],[1,2,3]),true);
-assert.equal(isSubsetOf([1,2,3,4],[5,6,7,]),false);
+assert.equal(isSubsetOf([1,2,3,4],[5,6,7]),false);
 
 //Tests for zipped array generation //
 
@@ -68,9 +68,6 @@ assert.equal(checkDecending([1,2,3,4,5]),false);
 
 assert.deepEqual(differentiateArrays([],[]),[]);
 assert.deepEqual(differentiateArrays([2],[2]),[]);
-assert.deepEqual(differentiateArrays([1,2,3,4,5],[1,2,3,4]),[5]);
-assert.deepEqual(differentiateArrays(["test","for","diff",1,2,3],[1,2,3,"for"]),["test","diff"]);
-assert.deepEqual(differentiateArrays([-2,-4,-6,2],[-6,2]),[-2,-4]);
 
 //Tests for counting number of even elements in given array //
 

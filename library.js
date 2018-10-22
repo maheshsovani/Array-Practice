@@ -13,12 +13,12 @@ const intersectSets=function(array1,array2){
 }
 exports.intersectSets=intersectSets;
 
-const aboveLimit = function(limit){
+const aboveThresh = function(limit){
   return function(element){
     return element>limit;
   }
 }
-const belowLimit = function(limit){
+const belowThresh = function(limit){
   return function(element){
     return element<limit;
   }
@@ -28,8 +28,8 @@ const doPartition=function(array,limit){
   let outputArray=[];
   let array1=[];
   let array2=[];
-  let abovelimit=above(limit);
-  let belowlimit=below(limit);
+  let abovelimit=aboveThresh(limit);
+  let belowlimit=belowThresh(limit);
   array2.push(array.filter(belowlimit));
   array1.push(array.filter(abovelimit));
   return outputArray=array2.concat(array1);
@@ -37,14 +37,7 @@ const doPartition=function(array,limit){
 exports.doPartition=doPartition;
 
 const rotateArray=function(array,number){
-  let rotatedArray=[];
-  for (let index=number;index<array.length;index++){
-    rotatedArray.push(array[index])
-  }
-  for (let index1=0;index1<number;index1++){
-    rotatedArray.push(array[index1])
-  }
-  return rotatedArray;
+  return rotatedArray =array.slice(number,array.length).concat(array.slice(0,number));
 }
 exports.rotateArray=rotateArray;
 
@@ -81,14 +74,16 @@ const averageOfArrayElements = function(array){
 }
 exports.averageOfArrayElements=averageOfArrayElements;
 
-const differentiateArrays = function(array1,array2){
-  let differenceArray=[];
-  for (element1 of array1){
-    if(!array2.includes(element1)){
-      differenceArray.push(element1);
-    }
+const checkDifference=function(secondArray){
+  return function(element){
+    return !secondArray.includes(element);
   }
-  return differenceArray;
+}
+
+const differentiateArrays = function(array1,array2){
+  let checkDiff=checkDifference(array1);
+  let differenceArray=array2.filter(checkDiff);
+  return filterUniqueElements(differenceArray);
 }
 exports.differentiateArrays = differentiateArrays;
 
@@ -118,7 +113,7 @@ const findFirstOccurence=function(array,givenNumber){
 exports.findFirstOccurence=findFirstOccurence;
 
 const countAboveThreshHold=function(array,threshHold){
-  let limit = above(threshHold);
+  let limit = aboveThresh(threshHold);
   return array.filter(limit).length;
 }
 exports.countAboveThreshHold=countAboveThreshHold;
@@ -158,7 +153,7 @@ const countElementLength=function(array){
 exports.countElementLength=countElementLength;
 
 const countBelowThreshHold=function(array,threshHold){
-  let limit = below(threshHold);
+  let limit = belowThresh(threshHold);
   return array.filter(limit).length
 }
 exports.countBelowThreshHold=countBelowThreshHold;
