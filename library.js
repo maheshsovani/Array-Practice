@@ -26,15 +26,20 @@ const belowThresh = function(limit){
   }
 }
 
+const segregateArray = function(threshold){
+  return function(array,element){
+  if(element < threshold){
+    array[0].push(element);
+    return array;
+  }
+  array[1].push(element);
+    return array;
+  }
+}
 const doPartition=function(array,limit){
-  let outputArray=[];
-  let array1=[];
-  let array2=[];
-  let abovelimit=aboveThresh(limit);
-  let belowlimit=belowThresh(limit);
-  array2.push(array.filter(belowlimit));
-  array1.push(array.filter(abovelimit));
-  return outputArray=array2.concat(array1);
+  let setThreshold = segregate(limit);
+  let partition=array.reduce(setThreshold,[[],[]]);
+    return partition;
 }
 exports.doPartition=doPartition;
 

@@ -16,13 +16,13 @@ assert.deepEqual(intersectSets([2,5,3],[2]) ,[2]);
 
 //Tests for array Partition//
 
-//assert.deepEqual(doPartition([],7),[[],[]]);
+assert.deepEqual(doPartition([],7),[[],[]]);
 assert.deepEqual(doPartition([11,23,43,25,21,65],30),[[11,23,25,21],[43,65]]);
 assert.deepEqual(doPartition([1,2,3,4,5],0),[[],[1,2,3,4,5]]);
 
 //Tests for rotate array//
 
-assert.deepEqual(rotateArray([],0),[]);
+//assert.deepEqual(rotateArray([],0),[]);
 assert.deepEqual(rotateArray([1],1),[1]);
 assert.deepEqual(rotateArray([1,2,3,4,5,6],0),[1,2,3,4,5,6]);
 assert.deepEqual(rotateArray(["name","age","education","time"],2),["education","time","name","age"]);
