@@ -1,4 +1,4 @@
-const isIncludes=function(array){
+const checkPresence=function(array){
   return function(element){
     let newArray = [];
     if(array.includes(element)){
@@ -7,8 +7,9 @@ const isIncludes=function(array){
     return newArray;
   }
 }
+
 const intersectSets=function(array1,array2){
-  let checkIntersection = isIncludes(array1);
+  let checkIntersection = checkPresence(array1);
   return array2.filter(checkIntersection);
 }
 exports.intersectSets=intersectSets;
@@ -18,6 +19,7 @@ const aboveThresh = function(limit){
     return element>limit;
   }
 }
+
 const belowThresh = function(limit){
   return function(element){
     return element<limit;
@@ -74,9 +76,9 @@ const averageOfArrayElements = function(array){
 }
 exports.averageOfArrayElements=averageOfArrayElements;
 
-const checkDifference=function(secondArray){
+const checkDifference=function(firstArray){
   return function(element){
-    return !secondArray.includes(element);
+    return !firstArray.includes(element);
   }
 }
 
@@ -100,14 +102,15 @@ const countEvenNumbers=function(array){
 }
 exports.countEvenNumbers=countEvenNumbers;
 
-const findFirstOccurence=function(array,givenNumber){
-  let firstOccurence;
-  let number=0;
-  let index=0;
-  do{ number=array[index]
-    firstOccurence=index+1;
-    index++;
-  }while(number!=givenNumber)
+const checkOccurence=function(object,element){
+  let {index,number,occurence}=object;
+  if (element === number){
+    object.occurence.push(object.index+1);
+  }
+  return  {index:index+1,number:number,occurence:occurence}
+} 
+const findFirstOccurence=function(array,number){
+  firstOccurence = array.reduce(checkOccurence,{index:0,number:number,occurence:[]}).occurence[0];
   return firstOccurence;
 }
 exports.findFirstOccurence=findFirstOccurence;
@@ -158,9 +161,9 @@ const countBelowThreshHold=function(array,threshHold){
 }
 exports.countBelowThreshHold=countBelowThreshHold;
 
-const lower=function(a,b){return Math.min(a,b)}
+const lowerThanLimit=function(a,b){return Math.min(a,b)}
 const findLowestNumber=function(array){
-  return array.reduce(lower);
+  return array.reduce(lowerThanLimit);
 }
 exports.findLowestNumber=findLowestNumber;
 
