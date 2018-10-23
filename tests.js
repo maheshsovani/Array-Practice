@@ -30,8 +30,8 @@ assert.deepEqual(rotateArray([1,2,"mahesh","name"],3),["name",1,2,"mahesh"]);
 
 //Tests for subset array identification//
 
-assert.equal(isSubsetOf([],[]),false);
-assert.equal(isSubsetOf([1,2],[]),false);
+assert.equal(isSubsetOf([],[]),true);
+assert.equal(isSubsetOf([1,2],[]),true);
 assert.equal(isSubsetOf([""],[""]),true);
 assert.equal(isSubsetOf([1,2,3,4,5,6],[1,2,3]),true);
 assert.equal(isSubsetOf([1,2,3,"mahesh","some"],[1,2,3]),true);
