@@ -14,13 +14,13 @@ const intersectSets=function(array1,array2){
 }
 exports.intersectSets=intersectSets;
 
-const aboveThresh = function(limit){
+const aboveThreshold = function(limit){
   return function(element){
     return element>limit;
   }
 }
 
-const belowThresh = function(limit){
+const belowThreshold = function(limit){
   return function(element){
     return element<limit;
   }
@@ -28,18 +28,18 @@ const belowThresh = function(limit){
 
 const segregateArray = function(threshold){
   return function(array,element){
-  if(element < threshold){
-    array[0].push(element);
-    return array;
-  }
-  array[1].push(element);
+    if(element < threshold){
+      array[0].push(element);
+      return array;
+    }
+    array[1].push(element);
     return array;
   }
 }
 const doPartition=function(array,limit){
-  let setThreshold = segregate(limit);
+  let setThreshold = segregateArray(limit);
   let partition=array.reduce(setThreshold,[[],[]]);
-    return partition;
+  return partition;
 }
 exports.doPartition=doPartition;
 
@@ -48,13 +48,13 @@ const rotateArray=function(array,number){
 }
 exports.rotateArray=rotateArray;
 
-const isSubsetOf = function(array,isSubsetArray){
+const isSubsetOf = function(array,subsetArray){
   let count=0;
-  for(element of isSubsetArray){
+  for(element of subsetArray){
     if(array.includes(element)){
       count++;
     }
-    if(count==isSubsetArray.length){
+    if(count==subsetArray.length){
       return true;
     }
   }
@@ -121,14 +121,14 @@ const findFirstOccurence=function(array,number){
 exports.findFirstOccurence=findFirstOccurence;
 
 const countAboveThreshHold=function(array,threshHold){
-  let limit = aboveThresh(threshHold);
+  let limit = aboveThreshold(threshHold);
   return array.filter(limit).length;
 }
 exports.countAboveThreshHold=countAboveThreshHold;
 
 const greater=function(number1,number2){return (Math.max(number1,number2))}
 const findGreatestNumber=function(array){
-  greatestNumber=array.reduce(greater)
+  greatestNumber=array.reduce(greater);
   return greatestNumber;
 }
 exports.findGreatestNumber=findGreatestNumber;
@@ -154,15 +154,15 @@ const checkDecending=function(array){
   return isDecending;
 }
 exports.checkDecending=checkDecending;
-
-const countElementLength=function(array){
+  
+const countElementLength = function(array){
   return array.map(element=>element.length);
 }
 exports.countElementLength=countElementLength;
 
 const countBelowThreshHold=function(array,threshHold){
-  let limit = belowThresh(threshHold);
-  return array.filter(limit).length
+  let limit = belowThreshold(threshHold);
+  return array.filter(limit).length;
 }
 exports.countBelowThreshHold=countBelowThreshHold;
 
@@ -208,9 +208,9 @@ exports.reverseSeries=reverseSeries;
 const chooseAlternate=function(state,element){
   let {index,elements} = state;
   if( index%2 == 0 ){
-    elements.push(element)
+    elements.push(element);
   }
-  return {index:index+1,elements:elements}
+  return {index:index+1,elements:elements};
 }
 const alternateElement=function(array){
   return array.reduce(chooseAlternate,{index:0,elements:[]}).elements;
@@ -228,7 +228,7 @@ const extractOddNumbers=function(array){
 exports.extractOddNumbers=extractOddNumbers;
 
 const sumOfArrayElements = function(array){
-  return array.reduce(add,[])
+  return array.reduce(add,[]);
 }
 exports.sumOfArrayElements=sumOfArrayElements;
 
@@ -239,13 +239,14 @@ const unionOfArray=function(array1,array2){
 }
 exports.unionOfArray=unionOfArray;
 
-const filterUniqueElements=function(array){
-  let uniqueArray=[];
-  for (element of array){
-    if(!uniqueArray.includes(element)){
-      uniqueArray.push(element);
-    }
+const filterUniques=function(array,element){
+  if(!array.includes(element)){
+    array.push(element);
   }
-  return uniqueArray;
+  return array;
+}
+
+const filterUniqueElements=function(array){
+  return array.reduce(filterUniques,[]);
 }
 exports.filterUniqueElements=filterUniqueElements;
