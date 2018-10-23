@@ -1,197 +1,185 @@
-const checkPresence = function(array){
-  return function(element){
-    let newArray  =  [];
-    if(array.includes(element)){
-      newArray.push(element);
+const checkPresence = function(dataSet){
+  const isExist = function(element){
+    let outputList  =  [];
+    if(dataSet.includes(element)){
+      outputList.push(element);
     }
-    return newArray;
+    return outputList;
   }
+  return isExist;
 }
 
-const intersectSets = function(array1,array2){
-  let checkIntersection  =  checkPresence(array1);
-  return array2.filter(checkIntersection);
+const intersectSets = function(set1,set2){
+  let checkIntersection  =  checkPresence(set1);
+  return set2.filter(checkIntersection);
 }
-exports.intersectSets = intersectSets;
 
-const aboveThreshold  =  function(limit){
-  return function(element){
-    return element>limit;
+const aboveThreshold  =  function(threshold){
+  const checkAbove = function(element){
+    return element>threshold;
   }
+  return checkAbove;
 }
 
-const belowThreshold  =  function(limit){
-  return function(element){
-    return element<limit;
+const belowThreshold  =  function(threshold){
+  const checkBelow = function(element){
+    return element < threshold;
   }
+  return checkBelow;
 }
 
-const segregateArray  =  function(threshold){
-  return function(array,element){
+const classifyList =  function(threshold){
+  const seperateList = function(list,element){
     if(element < threshold){
-      array[0].push(element);
-      return array;
+      list[0].push(element);
+      return list;
     }
-    array[1].push(element);
-    return array;
+    list[1].push(element);
+    return list;
   }
+  return seperateList;
 }
 
-const doPartition = function(array,limit){
-  let setThreshold  =  segregateArray(limit);
-  let partition = array.reduce(setThreshold,[[],[]]);
+const doPartition = function(list,limit){
+  let setThreshold  =  classifyList(limit);
+  let partition = list.reduce(setThreshold,[[],[]]);
   return partition;
 }
-exports.doPartition = doPartition;
 
-const rotateArray = function(array,number){
-  return rotatedArray  = array.slice(number,array.length).concat(array.slice(0,number));
+const rotateElements = function(list,number){
+  let  rotatedList = list.slice(number,list.length).concat(list.slice(0,number));
+  return rotatedList;
 }
-exports.rotateArray = rotateArray;
 
-const subsetArray=function(array){
-  return function(element){
-    if(array.includes(element)){
+const checkSubset=function(list){
+  const hasElement = function(element){
+    if(list.includes(element)){
       return true;
     }
   }
+  return hasElement;
 }
 
-const isSubsetOf=function(array1,array2){
-  let callSub=subsetArray(array1);
-  if(array2.length == array2.filter(callSub).length){
+const isSubsetOf=function(set1,set2){
+  let callSub = checkSubset(set1);
+  if(set2.length == set2.filter(callSub).length){
     return true;
   }
   return false;
 }
-exports.isSubsetOf = isSubsetOf;
 
-const zippedArray = function(array1,array2){
-  let shortLength = Math.min(array1.length,array2.length)
-  let zippedArray = [];
+const zip = function(dataSet1,dataSet2){
+  let shortLength = Math.min(dataSet1.length,dataSet2.length)
+  let zippedList = [];
   for (let index = 0;index<shortLength;index++){
-    zippedArray[index] = [array1[index],array2[index]];
+    zippedList[index] = [dataSet1[index],dataSet2[index]];
   }
-  return zippedArray;
+  return zippedList;
 }
-exports.zippedArray = zippedArray;
 
 const add = function(a,b){return +a+b};
 
-const averageOfArrayElements  =  function(array){
-  let summation  =  array.reduce(add);
-  let answer  =  summation/array.length;
+const calculateAverage = function(numbers){
+  let summation  =  numbers.reduce(add);
+  let answer  =  summation/numbers.length;
   return answer;
 }
-exports.averageOfArrayElements = averageOfArrayElements;
 
-const checkDifference = function(firstArray){
-  return function(element){
-    return !firstArray.includes(element);
+const checkDifference = function(set){
+  const isContain = function(element){
+    return !set.includes(element);
   }
+  return isContain
 }
 
-const differentiateArrays  =  function(array1,array2){
-  let checkDiff = checkDifference(array1);
-  let differenceArray = array2.filter(checkDiff);
-  return filterUniqueElements(differenceArray);
+const differentiateLists  =  function(list1,list2){
+  let checkDiff = checkDifference(list1);
+  let differenceList = list2.filter(checkDiff);
+  return filterUniqueElements(differenceList);
 }
-exports.differentiateArrays  =  differentiateArrays;
 
 const extractDigits = function(number){
-  let outputArray  =  number.toString().split("");
-  return outputArray.map(x => +x);
+  let digits  =  number.toString().split("");
+  return digits.map(x => +x);
 }
-exports.extractDigits = extractDigits;
 
-const checkEven = function(array){return array.filter(num =>num%2 == 0)}
+const checkEven = function(list){return list.filter(num =>num%2 == 0)}
 
-const countEvenNumbers = function(array){
-  return checkEven(array).length;
+const countEvenNumbers = function(list){
+  return checkEven(list).length;
 }
-exports.countEvenNumbers = countEvenNumbers;
 
-const checkOccurence = function(object,element){
-  let {index,number,occurence} = object;
+const checkOccurence = function(status,element){
+  let {index,number,occurence} = status;
   if (element  ===  number){
-    object.occurence.push(object.index+1);
+    status.occurence.push(status.index+1);
   }
   return {index:index+1,number:number,occurence:occurence};
 } 
 
-const findFirstOccurence = function(array,number){
-  let object = {index:0,number:number,occurence:[]};
-  firstOccurence  =  array.reduce(checkOccurence,object).occurence[0];
+const findFirstOccurence = function(list,number){
+  let status = {index:0,number:number,occurence:[]};
+  firstOccurence  =  list.reduce(checkOccurence,status).occurence[0];
   return firstOccurence;
 }
-exports.findFirstOccurence = findFirstOccurence;
 
-const countAboveThreshHold = function(array,threshHold){
-  let limit  =  aboveThreshold(threshHold);
-  return array.filter(limit).length;
+const countAboveThreshHold = function(list,threshold){
+  let limit  =  aboveThreshold(threshold);
+  return list.filter(limit).length;
 }
-exports.countAboveThreshHold = countAboveThreshHold;
 
-const greater = function(number1,number2){return Math.max(number1,number2)}
-const findGreatestNumber = function(array){
-  greatestNumber = array.reduce(greater);
+const findGreater = function(number1,number2){return Math.max(number1,number2)}
+const findGreatestNumber = function(list){
+  greatestNumber = list.reduce(findGreater);
   return greatestNumber;
 }
-exports.findGreatestNumber = findGreatestNumber;
 
-const checkAscending = function(array){
+const checkAscending = function(list){
   let isAscending = true;
-  for (let index = 0;index<array.length;index++){
-    if(array[index]>array[index+1]){
+  for (let index = 0;index<list.length;index++){
+    if(list[index]>list[index+1]){
       isAscending = false;
     }
   }
   return isAscending;
 }
-exports.checkAscending = checkAscending;
 
-const checkDecending = function(array){
+const checkDecending = function(list){
   let isDecending = true;
-  for (let index = 0;index<array.length;index++){
-    if(array[index+1]>array[index]){
+  for (let index = 0;index<list.length;index++){
+    if(list[index+1]>list[index]){
       isDecending = false;
     }
   }
   return isDecending;
 }
-exports.checkDecending = checkDecending;
 
-const countElementLength  =  function(array){
-  return array.map(element => element.length);
+const mapLengthOfElements  =  function(list){
+  return list.map(element => element.length);
 }
-exports.countElementLength = countElementLength;
 
-const countBelowThreshHold = function(array,threshHold){
+const countBelowThreshHold = function(list,threshHold){
   let limit  =  belowThreshold(threshHold);
-  return array.filter(limit).length;
+  return list.filter(limit).length;
 }
-exports.countBelowThreshHold = countBelowThreshHold;
 
 const lowerThanLimit = function(a,b){return Math.min(a,b)}
-const findLowestNumber = function(array){
-  return array.reduce(lowerThanLimit);
+const findLowestNumber = function(list){
+  return list.reduce(lowerThanLimit);
 }
-exports.findLowestNumber = findLowestNumber;
 
-const isOdd = function(array){
-  return array.filter(number => number%2 != 0 )}
+const isOdd = function(list){
+  return list.filter(number => number%2 != 0 )}
 
-const countOddNumbers = function(array){
-  return isOdd(array).length;
+const countOddNumbers = function(list){
+  return isOdd(list).length;
 }
-exports.countOddNumbers = countOddNumbers;
 
-const reverseArray  =  function(array){
-  return array.reverse();
+const reverseList  =  function(list){
+  return list.reverse();
 }
-exports.reverseArray = reverseArray;
 
-const reverseFibonacciSeries = function(limit){
+const generateReverseFibonacciSeries = function(limit){
   let previousTerm = 0;
   let lastSecondTerm = 1;
   let currentTerm = 0;
@@ -204,54 +192,76 @@ const reverseFibonacciSeries = function(limit){
   }
   return(fibonacciSeries);
 }
-exports.reverseFibonacciSeries = reverseFibonacciSeries;
 
-const reverseSeries  =  function(array){
-  return array.reverse();
+const reverseSeries  =  function(list){
+  return list.reverse();
 }
-exports.reverseSeries = reverseSeries;
 
-const chooseAlternate = function(state,element){
+const chooseAlternateNumber = function(state,element){
   let {index,elements}  =  state;
   if( index%2  ==  0 ){
     elements.push(element);
   }
   return {index:index+1,elements:elements};
 }
-const alternateElement = function(array){
-  return array.reduce(chooseAlternate,{index:0,elements:[]}).elements;
-}
-exports.alternateElement = alternateElement;
 
-const extractEvenNumbers = function(array){
-  return checkEven(array);
+const selectEverySecondNumber = function(numbers){
+  return numbers.reduce(chooseAlternateNumber,{index:0,elements:[]}).elements;
 }
-exports.extractEvenNumbers = extractEvenNumbers;
 
-const extractOddNumbers = function(array){
-  return isOdd(array);
+const extractEvenNumbers = function(numbers){
+  return checkEven(numbers);
 }
-exports.extractOddNumbers = extractOddNumbers;
 
-const sumOfArrayElements  =  function(array){
-  return array.reduce(add,[]);
+const extractOddNumbers = function(list){
+  return isOdd(list);
 }
-exports.sumOfArrayElements = sumOfArrayElements;
 
-const unionOfArray = function(array1,array2){
-  let unionArray = array1.concat(array2);
-  return filterUniqueElements(unionArray);
+const sumOfListElements  =  function(list){
+  return list.reduce(add,[]);
 }
-exports.unionOfArray = unionOfArray;
 
-const filterUniques = function(array,element){
-  if(!array.includes(element)){
-    array.push(element);
+const unionOfList = function(list1,list2){
+  let unionList = list1.concat(list2);
+  return filterUniqueElements(unionList);
+}
+
+const filterUniques = function(list,element){
+  if(!list.includes(element)){
+    list.push(element);
   }
-  return array;
+  return list;
 }
 
-const filterUniqueElements = function(array){
-  return array.reduce(filterUniques,[]);
+const filterUniqueElements = function(list){
+  return list.reduce(filterUniques,[]);
 }
+
+
+exports.intersectSets = intersectSets;
+exports.doPartition = doPartition;
+exports.rotateList = rotateElements;
+exports.isSubsetOf = isSubsetOf;
+exports.zippedList = zip;
+exports.calculateAverage = calculateAverage;
+exports.differentiateLists  =  differentiateLists;
+exports.extractDigits = extractDigits;
+exports.countEvenNumbers = countEvenNumbers;
+exports.findFirstOccurence = findFirstOccurence;
+exports.countAboveThreshHold = countAboveThreshHold;
+exports.findGreatestNumber = findGreatestNumber;
+exports.checkAscending = checkAscending;
+exports.checkDecending = checkDecending;
+exports.mapLengthOfElements = mapLengthOfElements;
+exports.countBelowThreshHold = countBelowThreshHold;
+exports.findLowestNumber = findLowestNumber;
+exports.countOddNumbers = countOddNumbers;
+exports.reverseList = reverseList;
+exports.generateReverseFibonacciSeries = generateReverseFibonacciSeries;
+exports.reverseSeries = reverseSeries;
+exports.alternateElement = selectEverySecondNumber;
+exports.extractEvenNumbers = extractEvenNumbers;
+exports.extractOddNumbers = extractOddNumbers;
+exports.sumOfListElements = sumOfListElements;
+exports.unionOfList = unionOfList;
 exports.filterUniqueElements = filterUniqueElements;
