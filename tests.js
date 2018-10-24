@@ -2,9 +2,34 @@ const assert=require("assert");
 
 const library=require("./library.js");
 
-const {intersectSets,doPartition,rotateList,isSubsetOf,zippedList,calculateAverage,checkAscending,checkDecending,
-differentiateLists,countEvenNumbers,extractDigits,findGreatestNumber,mapLengthOfElements,countBelowThreshHold,findLowestNumber,
-countOddNumbers,reverseList,generateReverseFibonacciSeries,reverseSeries,sumOfListElements,unionOfList,filterUniqueElements, findFirstOccurence,countAboveThreshHold,alternateElement,extractOddNumbers,extractEvenNumbers } = library;
+const {intersectSets,
+  createPartition,
+  rotateElements,
+  isSubset,
+  zip,
+  calculateAverage,
+  checkAscending,
+  checkDecending,
+  differentiateLists,
+  countEvenNumbers,
+  extractDigits,
+  findGreatestNumber,
+  mapLengthOfElements,
+  countBelowThreshHold,
+  findLowestNumber,
+  countOddNumbers,
+  reverseList,
+  generateReverseFibonacciSeries,
+  reverseSeries,
+  sumOfListElements,
+  unionOfList,
+  filterUniqueElements,
+  findFirstOccurence,
+  countAboveThreshHold,
+  selectEverySecondNumber,
+  extractOddNumbers,
+  extractEvenNumbers 
+} = library;
 
 //Tests for  create intersected list  //
 
@@ -16,33 +41,30 @@ assert.deepEqual(intersectSets([2,5,3],[2]) ,[2]);
 
 //Tests for list Partition//
 
-assert.deepEqual(doPartition([],7),[[],[]]);
-assert.deepEqual(doPartition([11,23,43,25,21,65],30),[[11,23,25,21],[43,65]]);
-assert.deepEqual(doPartition([1,2,3,4,5],0),[[],[1,2,3,4,5]]);
+assert.deepEqual(createPartition([],7),[[],[]]);
+assert.deepEqual(createPartition([11,23,43,25,21,65],30),[[11,23,25,21],[43,65]]);
+assert.deepEqual(createPartition([1,2,3,4,5],0),[[],[1,2,3,4,5]]);
 
 //Tests for rotate list//
 
-//assert.deepEqual(rotateList([],0),[]);
-assert.deepEqual(rotateList([1],1),[1]);
-assert.deepEqual(rotateList([1,2,3,4,5,6],0),[1,2,3,4,5,6]);
-assert.deepEqual(rotateList(["name","age","education","time"],2),["education","time","name","age"]);
-assert.deepEqual(rotateList([1,2,"mahesh","name"],3),["name",1,2,"mahesh"]);
+assert.deepEqual(rotateElements([1],1),[1]);
+assert.deepEqual(rotateElements([1,2,3,4,5,6],0),[1,2,3,4,5,6]);
+assert.deepEqual(rotateElements(["name","age","education","time"],2),["education","time","name","age"]);
+assert.deepEqual(rotateElements([1,2,"mahesh","name"],3),["name",1,2,"mahesh"]);
 
 //Tests for subset list identification//
 
-assert.equal(isSubsetOf([],[]),true);
-assert.equal(isSubsetOf([1,2],[]),true);
-assert.equal(isSubsetOf([""],[""]),true);
-assert.equal(isSubsetOf([1,2,3,4,5,6],[1,2,3]),true);
-assert.equal(isSubsetOf([1,2,3,"mahesh","some"],[1,2,3]),true);
-assert.equal(isSubsetOf([1,2,3,4],[5,6,7]),false);
+assert.equal(isSubset([""],[""]),true);
+assert.equal(isSubset([1,2,3,4,5,6],[1,2,3]),true);
+assert.equal(isSubset([1,2,3,"mahesh","some"],[1,2,3]),true);
+assert.equal(isSubset([1,2,3,4],[5,6,7]),false);
 
 //Tests for zipped list generation //
 
-assert.deepEqual(zippedList([],[]),[]);
-assert.deepEqual(zippedList([1,2,3,4],[1,2,3,4,5]),[[1,1],[2,2],[3,3],[4,4]]);
-assert.deepEqual(zippedList([1,2],[1,2,3,4,5]),[[1,1],[2,2]]);
-assert.deepEqual(zippedList(["test","for","zip"],[1,2,3,4,5]),[["test",1],["for",2],["zip",3]]);
+assert.deepEqual(zip([],[]),[]);
+assert.deepEqual(zip([1,2,3,4],[1,2,3,4,5]),[[1,1],[2,2],[3,3],[4,4]]);
+assert.deepEqual(zip([1,2],[1,2,3,4,5]),[[1,1],[2,2]]);
+assert.deepEqual(zip(["test","for","zip"],[1,2,3,4,5]),[["test",1],["for",2],["zip",3]]);
 
 //Tests for calculateAverage of list element numbers //
 
@@ -52,7 +74,6 @@ assert.equal(calculateAverage([1,2,0]),1);
 
 //Tests for checking ascending order of list of numbers//
 
-//assert.equal(checkAscending([]),true);
 assert.equal(checkAscending([1]),true);
 assert.equal(checkAscending([1,2,3,4,5,6]),true);
 assert.equal(checkAscending([2,4,1,42,2]),false);
@@ -68,6 +89,8 @@ assert.equal(checkDecending([1,2,3,4,5]),false);
 
 assert.deepEqual(differentiateLists([],[]),[]);
 assert.deepEqual(differentiateLists([2],[2]),[]);
+assert.deepEqual(differentiateLists([""],[""," "]),[" "]);
+assert.deepEqual(differentiateLists([1,2,3],[1,2,3,4,5,6]),[4,5,6]);
 
 //Tests for counting number of even elements in given list //
 
@@ -135,7 +158,6 @@ assert.equal(countBelowThreshHold([-1,-2,-3,-4,-5],-2),3);
 //Tests for finding out the lowest number in an list//
 
 assert.equal(findLowestNumber([0]),0);
-//assert.equal(findLowestNumber([]), );
 assert.equal(findLowestNumber([1,2,3,4,5]),1);
 assert.equal(findLowestNumber([-1,-2,-3,-4,-5]),-5);
 
@@ -169,10 +191,10 @@ assert.deepEqual(reverseSeries([-1,2,3,-4]),[-4,3,2,-1]);
 
 //Tests for creating an list of alternate numbers of an list//
 
-assert.deepEqual(alternateElement([]),[]);
-assert.deepEqual(alternateElement([2]),[2]);
-assert.deepEqual(alternateElement([2,3]),[2]);
-assert.deepEqual(alternateElement([1,2,3,4,5,6]),[1,3,5]);
+assert.deepEqual(selectEverySecondNumber([]),[]);
+assert.deepEqual(selectEverySecondNumber([2]),[2]);
+assert.deepEqual(selectEverySecondNumber([2,3]),[2]);
+assert.deepEqual(selectEverySecondNumber([1,2,3,4,5,6]),[1,3,5]);
 
 //Tests for finding out the sum  of elements of an list//
 
@@ -190,7 +212,6 @@ assert.deepEqual(unionOfList([1,2,3,4,5],[2,3,5,6,7,9]),[1,2,3,4,5,6,7,9]);
 
 //Tests for creating an list of unique elements from given list//
 
-//assert.deepEqual(filterUniqueElements([]),[]);
 assert.deepEqual(filterUniqueElements([2,2,2,2]),[2]);
 assert.deepEqual(filterUniqueElements([1,2,3,3,4,5,3,2,2]),[1,2,3,4,5]);
 assert.deepEqual(filterUniqueElements([-3,-6,-4,-6,-3]),[-3,-6,-4]);
