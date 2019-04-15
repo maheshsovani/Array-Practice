@@ -31,6 +31,24 @@ const {intersectSets,
   extractEvenNumbers 
 } = library;
 
+//Tests for creating a seperate list of odd numbers in an list//
+
+assert.deepEqual(extractOddNumbers([]),[]);
+assert.deepEqual(extractOddNumbers([2]),[]);
+assert.deepEqual(extractOddNumbers([""]),[]);
+assert.deepEqual(extractOddNumbers([1,2]),[1]);
+assert.deepEqual(extractOddNumbers([1,2,3,4,5]),[1,3,5]);
+assert.deepEqual(extractOddNumbers([-1,-2,-3,-4,-5]),[-1,-3,-5]);
+
+//Tests for creating a seperate list of even numbers in an list//
+
+assert.deepEqual(extractEvenNumbers([]),[]);
+assert.deepEqual(extractEvenNumbers([1]),[]);
+assert.deepEqual(extractEvenNumbers([""]),[""]);
+assert.deepEqual(extractEvenNumbers([1,2,3,4,5,6,7,8,9]),[2,4,6,8]);
+assert.deepEqual(extractEvenNumbers([1,3,-2,-4,3]),[-2,-4]);
+
+
 //Tests for  create intersected list  //
 
 assert.deepEqual(intersectSets([2],[]) ,[]);
@@ -105,21 +123,6 @@ assert.deepEqual(extractDigits([0]),[0]);
 assert.deepEqual(extractDigits([""]),[]);
 assert.deepEqual(extractDigits(128912879),[1,2,8,9,1,2,8,7,9]);
 
-//Tests for creating a seperate list of even numbers in an list//
-
-assert.deepEqual(extractEvenNumbers([]),[]);
-assert.deepEqual(extractEvenNumbers([1]),[]);
-assert.deepEqual(extractEvenNumbers([""]),[""]);
-assert.deepEqual(extractEvenNumbers([1,2,3,4,5,6,7,8,9]),[2,4,6,8]);
-assert.deepEqual(extractEvenNumbers([1,3,-2,-4,3]),[-2,-4]);
-
-//Tests for creating a seperate list of odd numbers in an list//
-
-assert.deepEqual(extractOddNumbers([]),[]);
-assert.deepEqual(extractOddNumbers([""]),[]);
-assert.deepEqual(extractOddNumbers([2]),[]);
-assert.deepEqual(extractOddNumbers([1,2,3,4,5]),[1,3,5]);
-assert.deepEqual(extractOddNumbers([-1,-2,-3,-4,-5]),[-1,-3,-5]);
 
 //Tests for fiding out first occurence of given number in an list//
 

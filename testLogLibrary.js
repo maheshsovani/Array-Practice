@@ -1,25 +1,27 @@
-const counter=function(){
-  let count =0;
+const counter = function(){
+  let count = 1;
   return function(){
     return count++;
   }
 }
 let serialNumber = counter();
 
-const justify=function(times){
- let  spaces = new Array(times).fill(" ").join("");
-    return spaces;
+const justify=function(times,message){
+ let requiredSpaces = times - message.length
+ let  spaces = new Array(requiredSpaces).fill(" ").join("");
+    return message+spaces;
 }
 
 const testLog = function (args,expectedOutput,actualOutput,message){
   let output="";
   output = output + serialNumber() + "|";
-  output = output + message + justify(35-message.length) + "|";
-  output = output + args + justify(35-args.toString().length) + "|";
-  output = output + expectedOutput + justify(35-expectedOutput.toString().length)+ "|";
-  output = output + actualOutput + justify(35-actualOutput.toString().length)+ "|";
+  output = output + justify(35,JSON.stringify(message)) + "|";
+  output = output + justify(35,JSON.stringify(args)) + "|";
+  output = output + justify(35 ,JSON.stringify(expectedOutput))+ "|";
+  output = output + justify(35 ,JSON.stringify(actualOutput))+ "|";
   console.log(output);
+  console.log(new Array(144).fill(String.fromCharCode(9472)).join(""));
 }
-testLog("Test","Input","ExpectedOutput","actualOutput")  
 testLog([2,3],[24124414],32,"hii")  
 testLog([220000,3],[24124414],3200000,"dfrdzfgtyhjkl;.vbnm,.")  
+exports.testLog = testLog;

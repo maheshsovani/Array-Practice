@@ -198,10 +198,9 @@ const intersectSets = function(set1,set2){
 }
 
 const checkDifference = function(set){
-  const isContain = function(element){
+  return function(element){
     return !set.includes(element);
   }
-  return isContain;
 }
 
 const differentiateLists  =  function(list1,list2){
